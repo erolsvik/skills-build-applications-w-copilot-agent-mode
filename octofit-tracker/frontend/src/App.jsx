@@ -1,4 +1,5 @@
 import './App.css'
+import { apiBaseUrl } from './api'
 
 function App() {
   return (
@@ -50,6 +51,15 @@ function App() {
               <h3 className="h5">Smart insights</h3>
               <p className="text-muted mb-0">Use leaderboards and recommendations to stay motivated.</p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="api" className="mt-5">
+        <div className="card border-0 shadow-sm">
+          <div className="card-body">
+            <h3 className="h5">API base URL</h3>
+            <p className="text-muted mb-0">{apiBaseUrl}</p>
           </div>
         </div>
       </section>
