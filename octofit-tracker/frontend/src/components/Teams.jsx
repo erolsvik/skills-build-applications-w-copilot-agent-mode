@@ -1,5 +1,9 @@
 import { useEffect, useState } from 'react'
-import { apiEndpoints } from '../api'
+
+const codespaceName = import.meta.env.VITE_CODESPACE_NAME
+const teamsEndpoint = codespaceName
+  ? `https://${codespaceName}-8000.app.github.dev/api/teams`
+  : 'http://localhost:8000/api/teams'
 
 const normalizeResponse = (payload) => {
   if (Array.isArray(payload)) return payload
@@ -18,7 +22,7 @@ function Teams() {
   useEffect(() => {
     async function fetchTeams() {
       try {
-        const response = await fetch(apiEndpoints.teams)
+        const response = await fetch(teamsEndpoint)
         if (!response.ok) {
           throw new Error(`Failed to load teams (${response.status})`)
         }

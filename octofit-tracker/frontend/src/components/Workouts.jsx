@@ -1,5 +1,9 @@
 import { useEffect, useState } from 'react'
-import { apiEndpoints } from '../api'
+
+const codespaceName = import.meta.env.VITE_CODESPACE_NAME
+const workoutsEndpoint = codespaceName
+  ? `https://${codespaceName}-8000.app.github.dev/api/workouts`
+  : 'http://localhost:8000/api/workouts'
 
 const normalizeResponse = (payload) => {
   if (Array.isArray(payload)) return payload
@@ -18,7 +22,7 @@ function Workouts() {
   useEffect(() => {
     async function fetchWorkouts() {
       try {
-        const response = await fetch(apiEndpoints.workouts)
+        const response = await fetch(workoutsEndpoint)
         if (!response.ok) {
           throw new Error(`Failed to load workouts (${response.status})`)
         }

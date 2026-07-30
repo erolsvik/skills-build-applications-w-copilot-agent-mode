@@ -1,5 +1,9 @@
 import { useEffect, useState } from 'react'
-import { apiEndpoints } from '../api'
+
+const codespaceName = import.meta.env.VITE_CODESPACE_NAME
+const leaderboardEndpoint = codespaceName
+  ? `https://${codespaceName}-8000.app.github.dev/api/leaderboard`
+  : 'http://localhost:8000/api/leaderboard'
 
 const normalizeResponse = (payload) => {
   if (Array.isArray(payload)) return payload
@@ -18,7 +22,7 @@ function Leaderboard() {
   useEffect(() => {
     async function fetchLeaderboard() {
       try {
-        const response = await fetch(apiEndpoints.leaderboard)
+        const response = await fetch(leaderboardEndpoint)
         if (!response.ok) {
           throw new Error(`Failed to load leaderboard (${response.status})`)
         }

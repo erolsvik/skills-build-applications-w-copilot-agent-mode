@@ -1,5 +1,9 @@
 import { useEffect, useState } from 'react'
-import { apiEndpoints } from '../api'
+
+const codespaceName = import.meta.env.VITE_CODESPACE_NAME
+const usersEndpoint = codespaceName
+  ? `https://${codespaceName}-8000.app.github.dev/api/users`
+  : 'http://localhost:8000/api/users'
 
 const normalizeResponse = (payload) => {
   if (Array.isArray(payload)) return payload
@@ -18,7 +22,7 @@ function Users() {
   useEffect(() => {
     async function fetchUsers() {
       try {
-        const response = await fetch(apiEndpoints.users)
+        const response = await fetch(usersEndpoint)
         if (!response.ok) {
           throw new Error(`Failed to load users (${response.status})`)
         }
