@@ -6,5 +6,8 @@ export const apiBaseUrl = codespaceName
 
 export const apiEndpoints = {
   users: `${apiBaseUrl}/api/users`,
+  teams: `${apiBaseUrl}/api/teams`,
   activities: `${apiBaseUrl}/api/activities`,
+  workouts: `${apiBaseUrl}/api/workouts`,
+  leaderboard: `${apiBaseUrl}/api/leaderboard`,
 };
